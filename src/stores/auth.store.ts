@@ -1,76 +1,86 @@
 import { create } from 'zustand';
-import api from '@/services/api';
+import authService from '@/services/auth.service';
+import { Role } from '@/types/Role.type';
+import { AuthStore } from '@/types/Auth.interface';
 
-type Role = 'Mother' | 'Admin' | 'HealthProvider' | 'Partner' | 'ContentCreator' | 'Moderator' | 'Expert' | 'SupportStaff';
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: Role;
-  token?: string;
-}
-
-interface ApiError {
-  response?: {
-    data?: {
-      message?: string;
-    };
-  };
-  message?: string;
-}
-
-interface AuthStore {
-  user: User | null;
-  isLoading: boolean;
-  error: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-}
-
-export const useAuthStore = create<AuthStore>((set) => ({
+export const useAuthStore = create<AuthStore>((set, get) => ({
   user: null,
   isLoading: false,
   error: null,
+  isInitialized: false,
 
   login: async (email, password) => {
     set({ isLoading: true, error: null });
     try {
-      const response = await api.post('/auth/login', { email, password });
-      const user = {
-        id: response.data.id,
-        name: response.data.name,
-        email: response.data.email,
-        role: response.data.role,
-        token: response.data.token,
-      };
-      set({ user, isLoading: false });
-
-      if (user.token) {
-        localStorage.setItem('authToken', user.token);
-        api.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-      }
-    } catch (error: unknown) {
-      let errorMessage = 'Login failed';
-
-      if (typeof error === 'object' && error !== null) {
-        const apiError = error as ApiError;
-        errorMessage = apiError.response?.data?.message ||
-          apiError.message ||
-          'Login failed';
-      }
-
-      set({
-        error: errorMessage,
-        isLoading: false
-      });
-      throw new Error(errorMessage);
+      await authService.loginWithEmail(email, password);
+      await get().fetchUser();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Login failed';
+      set({ error: message, isLoading: false });
+      throw error;
     }
   },
 
-  logout: () => {
-    localStorage.removeItem('authToken');
-    delete api.defaults.headers.common['Authorization'];
-    set({ user: null });
+  loginWithGoogle: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      await authService.loginWithGoogle();
+      await get().fetchUser();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Google login failed';
+      set({ error: message, isLoading: false });
+      throw error;
+    }
   },
+
+  logout: async () => {
+    set({ isLoading: true });
+    try {
+      await authService.logout();
+      set({ user: null, isLoading: false, isInitialized: true });
+    } catch (error) {
+      set({ isLoading: false });
+      throw error;
+    }
+  },
+
+  fetchUser: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const userInfo = await authService.getUserInfo();
+      set({
+        user: {
+          id: userInfo.userId,
+          name: userInfo.displayName,
+          email: userInfo.email,
+          role: userInfo.roleName as Role,
+          photoUrl: userInfo.photoUrl,
+          displayName: userInfo.displayName
+        },
+        isLoading: false,
+        isInitialized: true
+      });
+    } catch (error) {
+      set({
+        user: null,
+        isLoading: false,
+        isInitialized: true,
+        error: error instanceof Error ? error.message : 'Failed to fetch user'
+      });
+    }
+  },
+
+  initialize: async () => {
+    if (get().isInitialized) return;
+    set({ isLoading: true });
+    try {
+      await get().fetchUser();
+    } catch (error) {
+      set({
+        isLoading: false,
+        isInitialized: true,
+        error: error instanceof Error ? error.message : 'Initialization failed'
+      });
+    }
+  }
 }));

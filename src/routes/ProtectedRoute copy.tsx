@@ -1,4 +1,5 @@
-import { Navigate, useLocation } from 'react-router-dom';
+// File: src/routes/ProtectedRoute.tsx
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 
@@ -13,22 +14,21 @@ export const ProtectedRoute = ({
     allowedRoles,
     isMobileRoute = false
 }: ProtectedRouteProps) => {
-    const { user, isLoading, isInitialized } = useAuth();
-    const location = useLocation();
+    const { user, isLoading, isAuthenticated } = useAuth();
 
-    if (isLoading || !isInitialized) {
+    if (isLoading) {
         return <LoadingSpinner fullScreen />;
     }
 
-    if (!user) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+    if (!isAuthenticated) {
+        return <Navigate to="/login" replace />;
     }
 
     if (isMobileRoute) {
         return children;
     }
 
-    if (allowedRoles && !allowedRoles.includes(user.role)) {
+    if (allowedRoles && user && !allowedRoles.includes(user.role)) {
         return <Navigate to="/403" replace />;
     }
 

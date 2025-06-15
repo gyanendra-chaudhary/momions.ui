@@ -1,19 +1,9 @@
 import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { ProtectedRoute } from '@/routes/ProtectedRoute';
-import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { useAuth } from '@/hooks/useAuth';
-
-// Layouts
-const MotherLayout = lazy(() => import('@/layouts/MotherLayout'));
-const AdminLayout = lazy(() => import('@/layouts/AdminLayout'));
-const HealthProviderLayout = lazy(() => import('@/layouts/HealthProviderLayout'));
-const PartnerLayout = lazy(() => import('@/layouts/PartnerLayout'));
-const ContentCreatorLayout = lazy(() => import('@/layouts/ContentCreatorLayout'));
-const ModeratorLayout = lazy(() => import('@/layouts/ModeratorLayout'));
-const ExpertLayout = lazy(() => import('@/layouts/ExpertLayout'));
-const SupportStaffLayout = lazy(() => import('@/layouts/SupportStaffLayout'));
-const MobileLayout = lazy(() => import('@/layouts/MobileLayout'));
+import MasterLayout from '@/layouts/_MasterLayout';
 
 // Authentication Pages
 const Login = lazy(() => import('@/pages/auth/Login'));
@@ -22,6 +12,7 @@ const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'));
 const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'));
 const EmailVerification = lazy(() => import('@/pages/auth/EmailVerification'));
 const TwoFactorAuth = lazy(() => import('@/pages/auth/TwoFactorAuth'));
+const RegisterSuccess = lazy(() => import('@/pages/auth/RegisterSuccess'));
 
 // Common Pages
 const ProfileView = lazy(() => import('@/pages/common/ProfileView'));
@@ -341,12 +332,18 @@ const OfflineMode = lazy(() => import('@/pages/mobile/OfflineMode'));
 const AppSettings = lazy(() => import('@/pages/mobile/AppSettings'));
 
 const AppRoutes = () => {
+    const { isLoading } = useAuth();
+
+    if (isLoading) {
+        return <LoadingSpinner fullScreen />;
+    }
     return (
         <Suspense fallback={<LoadingSpinner fullScreen />}>
             <Routes>
                 {/* Public Routes */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/register-success" element={<RegisterSuccess />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password/:token" element={<ResetPassword />} />
                 <Route path="/verify-email/:token" element={<EmailVerification />} />
@@ -360,7 +357,8 @@ const AppRoutes = () => {
                 {/* MOTHER ROLE ROUTES */}
                 <Route path="/mother/*" element={
                     <ProtectedRoute allowedRoles={['Mother']}>
-                        <MotherLayout />
+                        {/* <MotherLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     {/* Dashboard */}
@@ -477,12 +475,15 @@ const AppRoutes = () => {
                     <Route path="settings/privacy" element={<PrivacySettings />} />
                     <Route path="settings/notifications" element={<NotificationSettings />} />
                     <Route path="settings/password" element={<PasswordChange />} />
+
+                    <Route path="*" element={<NotFound />} />
                 </Route>
 
                 {/* ADMIN ROLE ROUTES */}
                 <Route path="/admin/*" element={
                     <ProtectedRoute allowedRoles={['Admin']}>
-                        <AdminLayout />
+                        {/* <AdminLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -547,7 +548,8 @@ const AppRoutes = () => {
                 {/* HEALTH PROVIDER ROLE ROUTES */}
                 <Route path="/provider/*" element={
                     <ProtectedRoute allowedRoles={['HealthProvider']}>
-                        <HealthProviderLayout />
+                        {/* <HealthProviderLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -600,7 +602,8 @@ const AppRoutes = () => {
                 {/* PARTNER/VENDOR ROLE ROUTES */}
                 <Route path="/partner/*" element={
                     <ProtectedRoute allowedRoles={['Partner']}>
-                        <PartnerLayout />
+                        {/* <PartnerLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -646,7 +649,8 @@ const AppRoutes = () => {
                 {/* CONTENT CREATOR ROLE ROUTES */}
                 <Route path="/creator/*" element={
                     <ProtectedRoute allowedRoles={['ContentCreator']}>
-                        <ContentCreatorLayout />
+                        {/* <ContentCreatorLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -687,7 +691,8 @@ const AppRoutes = () => {
                 {/* MODERATOR ROLE ROUTES */}
                 <Route path="/moderator/*" element={
                     <ProtectedRoute allowedRoles={['Moderator']}>
-                        <ModeratorLayout />
+                        {/* <ModeratorLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -731,7 +736,8 @@ const AppRoutes = () => {
                 {/* EXPERT ROLE ROUTES */}
                 <Route path="/expert/*" element={
                     <ProtectedRoute allowedRoles={['Expert']}>
-                        <ExpertLayout />
+                        {/* <ExpertLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -769,7 +775,8 @@ const AppRoutes = () => {
                 {/* SUPPORT STAFF ROLE ROUTES */}
                 <Route path="/support/*" element={
                     <ProtectedRoute allowedRoles={['SupportStaff']}>
-                        <SupportStaffLayout />
+                        {/* <SupportStaffLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
@@ -812,7 +819,8 @@ const AppRoutes = () => {
                 {/* Mobile Routes */}
                 <Route path="/mobile/*" element={
                     <ProtectedRoute>
-                        <MobileLayout />
+                        {/* <MobileLayout /> */}
+                        <MasterLayout />
                     </ProtectedRoute>
                 }>
                     <Route path="dashboard" element={<MobileDashboard />} />
@@ -834,9 +842,16 @@ const AppRoutes = () => {
 };
 export default AppRoutes;
 const RoleBasedRedirect = () => {
-    const { user } = useAuth();
+    const { user, isLoading, isInitialized } = useAuth();
+    const location = useLocation();
 
-    if (!user) return <Navigate to="/login" replace />;
+    if (isLoading || !isInitialized) {
+        return <LoadingSpinner fullScreen />;
+    }
+
+    if (!user) {
+        return <Navigate to="/login" state={{ from: location }} replace />;
+    }
 
     const roleRedirects = {
         'Mother': '/mother/dashboard',
