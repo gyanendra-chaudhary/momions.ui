@@ -1,15 +1,35 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
+import { Input } from './Input'
+import { Textarea } from './Textarea'
+import { Select } from './Select'
 
 interface InputFieldProps {
-  className?: string;
-  children?: React.ReactNode;
+  type?: 'text' | 'email' | 'password' | 'textarea' | 'select'
+  label: string
+  name: string
+  options?: { value: string; label: string }[]
+  [key: string]: any
 }
 
-export const InputField = ({ className, children }: InputFieldProps) => {
-  return (
-    <div className={cn('', className)}>
-      {children}
-    </div>
-  );
-};
+export const InputField = ({
+  type = 'text',
+  label,
+  name,
+  options,
+  ...props
+}: InputFieldProps) => {
+  const commonProps = {
+    name,
+    label,
+    ...props,
+  }
+
+  switch (type) {
+    case 'textarea':
+      return <Textarea {...commonProps} />
+    case 'select':
+      return <Select {...commonProps} options={options || []} />
+    default:
+      return <Input type={type} {...commonProps} />
+  }
+}

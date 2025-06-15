@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
     text?: string;
 }
 
-const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
+export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
     fullScreen = false,
     size = 'md',
     className = '',
@@ -47,5 +47,3 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         </div>
     );
 };
-
-export default LoadingSpinner;
