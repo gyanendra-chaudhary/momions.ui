@@ -1,8 +1,13 @@
 import { cn } from '@/lib/utils';
 import { ReactNode } from 'react'
 
+<<<<<<< HEAD
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type ButtonSize = 'sm' | 'md' | 'lg';
+=======
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger'
+type ButtonSize = 'sm' | 'md' | 'lg'
+>>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant

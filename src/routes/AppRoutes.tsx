@@ -492,7 +492,11 @@ const AppRoutes = () => {
                     <Route path="analytics" element={<RealTimeAnalytics />} />
 
                     {/* User Management */}
+<<<<<<< HEAD
                     <Route path="users/all" element={<AllUsers />} />
+=======
+                    <Route path="users" element={<AllUsers />} />
+>>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
                     <Route path="users/:userId" element={<UserDetails />} />
                     <Route path="users/:userId/analytics" element={<UserAnalytics />} />
                     <Route path="users/:userId/activity" element={<AUserActivity />} />
@@ -543,7 +547,10 @@ const AppRoutes = () => {
                     <Route path="finance/payments" element={<PaymentManagement />} />
                     <Route path="finance/subscriptions" element={<SubscriptionManagement />} />
                     <Route path="finance/reports" element={<FinancialReports />} />
+<<<<<<< HEAD
                     <Route path="*" element={<NotFound />} />
+=======
+>>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
                 </Route>
 
                 {/* HEALTH PROVIDER ROLE ROUTES */}
