@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* font */
+@font-face {
+  font-family: "Comfortaa";
+  src: url("@/assets/fonts/Comfortaa-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("@/assets/fonts/Comfortaa-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("@/assets/fonts/Comfortaa-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("@/assets/fonts/Comfortaa-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Comfortaa";
+  src: url("@/assets/fonts/Comfortaa-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Dark mode settings */
+/* Enhanced Dark Mode Styles */
+
+/* Root theme classes with smooth transitions */
+.dark {
+  @apply bg-gray-900 text-white;
+}
+
+.light {
+  @apply bg-white text-gray-900;
+}
+
+/* Smooth color transitions for all elements */
+* {
+  @apply transition-colors duration-300 ease-in-out;
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Light mode scrollbar */
+.light ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.light ::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
+
+/* Theme toggle button hover effects */
+.theme-toggle-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.theme-toggle-btn:hover::before {
+  width: 200%;
+  height: 200%;
+}
+
+/* Improved focus states for dark mode */
+.dark .focus\\:ring-indigo-500:focus {
+  @apply ring-indigo-400;
+}
+
+.dark .focus\\:ring-offset-2:focus {
+  @apply ring-offset-gray-900;
+}
+
+/* Enhanced button states */
+.dark button:hover {
+  @apply bg-gray-700;
+}
+
+.light button:hover {
+  @apply bg-gray-100;
+}
+
+/* Card backgrounds for consistent theming */
+.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-50 {
+  @apply bg-gray-900;
+}
+
+.dark .bg-gray-100 {
+  @apply bg-gray-800;
+}
+
+.dark .bg-gray-200 {
+  @apply bg-gray-700;
+}
+
+/* Text color adjustments */
+.dark .text-gray-500 {
+  @apply text-gray-400;
+}
+
+.dark .text-gray-600 {
+  @apply text-gray-300;
+}
+
+.dark .text-gray-700 {
+  @apply text-gray-200;
+}
+
+.dark .text-gray-800 {
+  @apply text-gray-100;
+}
+
+.dark .text-gray-900 {
+  @apply text-white;
+}
+
+/* Border color adjustments */
+.dark .border-gray-200 {
+  @apply border-gray-700;
+}
+
+.dark .border-gray-300 {
+  @apply border-gray-600;
+}
+
+/* Shadow adjustments for dark mode */
+.dark .shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow {
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.3),
+    0 1px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-md {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+
+.dark .shadow-lg {
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation keyframes for theme toggle */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.3s ease-out;
+}
+
+/* Enhanced backdrop blur for modals in dark mode */
+.dark .backdrop-blur {
+  backdrop-filter: blur(8px);
+}
+
+/* Improved selection colors */
+.dark ::selection {
+  @apply bg-indigo-600 text-white;
+}
+
+.light ::selection {
+  @apply bg-indigo-200 text-indigo-900;
+}
+
+/* Global styles */
+* {
+  font-family: "Comfortaa", cursive;
+}
