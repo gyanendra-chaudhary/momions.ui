@@ -91,7 +91,7 @@ export const adminNavigation: NavigationItem[] = [
         children: [
             { name: 'All Users', href: '/admin/users/all', icon: icons.users, current: false },
             { name: 'User Profiles', href: '/admin/users/profiles', icon: icons.users, current: false },
-            { name: 'Role Assignments', href: '/admin/users/roles', icon: icons.users, current: false },
+            { name: 'Role Assignments', href: '/admin/roles', icon: icons.users, current: false },
             { name: 'User Analytics', href: '/admin/users/analytics', icon: icons.analytics, current: false },
             { name: 'Activity Streaks', href: '/admin/users/streaks', icon: icons.time, current: false },
         ],

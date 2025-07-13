@@ -1,60 +1,8 @@
 import axios from 'axios';
 import api from './api';
+import { ApiResponse, ErrorResponse, UserAuthDetails, UserInfoResponse, UserSignUpDTO, UserSSODTO } from '@/types/Auth.interface';
 
-export interface UserInfoResponse {
-    userId: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    roleId: number;
-    roleName: string;
-    photoUrl: string;
-    displayName: string;
-}
 
-interface UserSignUpDTO {
-    email: string;
-    password: string;
-    confirmPassword: string;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    preferredLanguage?: string;
-    roleID?: number;
-    photo?: File;
-}
-
-interface UserSSODTO {
-    email: string;
-    firstName: string;
-    lastName: string;
-    phoneNumber?: string;
-    preferredLanguage?: string;
-    photoUrl?: string;
-}
-
-interface UserAuthDetails {
-    id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    photo?: string;
-    roleID: number;
-}
-
-interface ApiResponse<T> {
-    success: boolean;
-    message: string;
-    data?: T;
-    errors?: string[];
-    statusCode?: number;
-}
-export interface ErrorResponse {
-    message: string;
-    status?: number;
-    data?: unknown;
-}
 
 class AuthService {
     /**

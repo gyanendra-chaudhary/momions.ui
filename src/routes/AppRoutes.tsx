@@ -4,6 +4,7 @@ import { ProtectedRoute } from '@/routes/ProtectedRoute';
 import { LoadingSpinner } from '@/components/common/LoadingSpinner';
 import { useAuth } from '@/hooks/useAuth';
 import MasterLayout from '@/layouts/_MasterLayout';
+import { Role } from '@/types/Role.type';
 
 // Authentication Pages
 const Login = lazy(() => import('@/pages/auth/Login'));
@@ -492,11 +493,7 @@ const AppRoutes = () => {
                     <Route path="analytics" element={<RealTimeAnalytics />} />
 
                     {/* User Management */}
-<<<<<<< HEAD
                     <Route path="users/all" element={<AllUsers />} />
-=======
-                    <Route path="users" element={<AllUsers />} />
->>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
                     <Route path="users/:userId" element={<UserDetails />} />
                     <Route path="users/:userId/analytics" element={<UserAnalytics />} />
                     <Route path="users/:userId/activity" element={<AUserActivity />} />
@@ -547,18 +544,15 @@ const AppRoutes = () => {
                     <Route path="finance/payments" element={<PaymentManagement />} />
                     <Route path="finance/subscriptions" element={<SubscriptionManagement />} />
                     <Route path="finance/reports" element={<FinancialReports />} />
-<<<<<<< HEAD
                     <Route path="*" element={<NotFound />} />
-=======
->>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
-                </Route>
+                </Route >
 
                 {/* HEALTH PROVIDER ROLE ROUTES */}
-                <Route path="/provider/*" element={
-                    <ProtectedRoute allowedRoles={['HealthProvider']}>
+                < Route path="/provider/*" element={
+                    < ProtectedRoute allowedRoles={['HealthProvider']} >
                         {/* <HealthProviderLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<ProviderDashboard />} />
@@ -605,14 +599,14 @@ const AppRoutes = () => {
                     <Route path="resources/clinical" element={<ClinicalResources />} />
                     <Route path="education" element={<ContinuingEducation />} />
                     <Route path="network" element={<PeerNetwork />} />
-                </Route>
+                </Route >
 
                 {/* PARTNER/VENDOR ROLE ROUTES */}
-                <Route path="/partner/*" element={
-                    <ProtectedRoute allowedRoles={['Partner']}>
+                < Route path="/partner/*" element={
+                    < ProtectedRoute allowedRoles={['Partner']} >
                         {/* <PartnerLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<PartnerDashboard />} />
@@ -652,14 +646,14 @@ const AppRoutes = () => {
                     <Route path="settings/payment" element={<PaymentSettings />} />
                     <Route path="settings/shipping" element={<ShippingSettings />} />
                     <Route path="settings/tax" element={<TaxSettings />} />
-                </Route>
+                </Route >
 
                 {/* CONTENT CREATOR ROLE ROUTES */}
-                <Route path="/creator/*" element={
-                    <ProtectedRoute allowedRoles={['ContentCreator']}>
+                < Route path="/creator/*" element={
+                    < ProtectedRoute allowedRoles={['ContentCreator']} >
                         {/* <ContentCreatorLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<CreatorDashboard />} />
@@ -694,14 +688,14 @@ const AppRoutes = () => {
                     <Route path="audience" element={<AudienceInsights />} />
                     <Route path="feedback" element={<FeedbackManagement />} />
                     <Route path="trends" element={<ContentTrends />} />
-                </Route>
+                </Route >
 
                 {/* MODERATOR ROLE ROUTES */}
-                <Route path="/moderator/*" element={
-                    <ProtectedRoute allowedRoles={['Moderator']}>
+                < Route path="/moderator/*" element={
+                    < ProtectedRoute allowedRoles={['Moderator']} >
                         {/* <ModeratorLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<ModerationDashboard />} />
@@ -739,14 +733,14 @@ const AppRoutes = () => {
                     <Route path="tools/filters" element={<KeywordFilters />} />
                     <Route path="tools/escalation" element={<EscalationManagement />} />
                     <Route path="tools/guidelines" element={<ModerationGuidelines />} />
-                </Route>
+                </Route >
 
                 {/* EXPERT ROLE ROUTES */}
-                <Route path="/expert/*" element={
-                    <ProtectedRoute allowedRoles={['Expert']}>
+                < Route path="/expert/*" element={
+                    < ProtectedRoute allowedRoles={['Expert']} >
                         {/* <ExpertLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<ExpertDashboard />} />
@@ -778,14 +772,14 @@ const AppRoutes = () => {
                     <Route path="analytics/knowledge" element={<KnowledgeAnalytics />} />
                     <Route path="feedback" element={<UserFeedback />} />
                     <Route path="growth" element={<ProfessionalGrowth />} />
-                </Route>
+                </Route >
 
                 {/* SUPPORT STAFF ROLE ROUTES */}
-                <Route path="/support/*" element={
-                    <ProtectedRoute allowedRoles={['SupportStaff']}>
+                < Route path="/support/*" element={
+                    < ProtectedRoute allowedRoles={['SupportStaff']} >
                         {/* <SupportStaffLayout /> */}
-                        <MasterLayout />
-                    </ProtectedRoute>
+                        < MasterLayout />
+                    </ProtectedRoute >
                 }>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<SupportDashboard />} />
@@ -822,14 +816,14 @@ const AppRoutes = () => {
                     <Route path="analytics/response-times" element={<ResponseTimes />} />
                     <Route path="analytics/resolution" element={<ResolutionRates />} />
                     <Route path="analytics/satisfaction" element={<CustomerSatisfaction />} />
-                </Route>
+                </Route >
 
                 {/* Mobile Routes */}
-                <Route path="/mobile/*" element={
+                < Route path="/mobile/*" element={
                     <ProtectedRoute>
                         {/* <MobileLayout /> */}
                         <MasterLayout />
-                    </ProtectedRoute>
+                    </ProtectedRoute >
                 }>
                     <Route path="dashboard" element={<MobileDashboard />} />
                     <Route path="quick-actions" element={<QuickActions />} />
@@ -837,15 +831,15 @@ const AppRoutes = () => {
                     <Route path="notifications" element={<PushNotifications />} />
                     <Route path="offline" element={<OfflineMode />} />
                     <Route path="settings" element={<AppSettings />} />
-                </Route>
+                </Route >
 
                 {/* Default redirect based on user role */}
-                <Route path="/" element={<RoleBasedRedirect />} />
+                < Route path="/" element={< RoleBasedRedirect />} />
 
                 {/* Catch all - 404 */}
                 <Route path="*" element={<NotFound />} />
-            </Routes>
-        </Suspense>
+            </Routes >
+        </Suspense >
     );
 };
 export default AppRoutes;
@@ -872,5 +866,5 @@ const RoleBasedRedirect = () => {
         'SupportStaff': '/support/dashboard'
     };
 
-    return <Navigate to={roleRedirects[user.role] || '/403'} replace />;
+    return <Navigate to={roleRedirects[user.role as Role] || '/403'} replace />;
 };

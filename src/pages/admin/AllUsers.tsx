@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import useUserStore from '@/stores/user.store';
 
@@ -260,20 +259,8 @@ const AllUsers = () => {
                     </div>
                 )}
             </Modal>
-=======
-import React from 'react';
-
-const AllUsers = () => {
-    return (
-        <div>
-            {/* Your AllUsers component content */}
->>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
         </div>
     );
 };
 
-<<<<<<< HEAD
 export default AllUsers;
-=======
-export default AllUsers;
->>>>>>> 9b2a0e90b03714ff659de574b347f7ef4aaed57e
