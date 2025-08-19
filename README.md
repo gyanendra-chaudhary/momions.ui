@@ -1,54 +1,62 @@
-# React + TypeScript + Vite
+# Momions 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Momions is a modern **React 19** application built with **Vite** and **TypeScript**, featuring a **multi-role admin portal** with dynamic layouts, authentication, and reusable UI components.  
 
-Currently, two official plugins are available:
+This project uses **TailwindCSS** for styling, **Zustand** for state management, **React Hook Form + Zod** for form validation, and **React Router v7** for routing.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔐 **Authentication & Authorization**
+  - Role-based access control (RBAC) using COOKIE based authentication.
+  - Multi-role support (e.g., `Admin`, `Mother`, `HealthProvider`, `Partner`, `ContentCreator`, `Moderator`, `Expert`, `SupportStaff`).
+  - Secure password handling with `bcryptjs`.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- 🖥️ **Admin Portal**
+  - Dynamic **header & sidebar**.
+  - Responsive layout with **TailwindCSS**.
+  - Sidebar navigation updates based on role.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- 📦 **Reusable Components**
+  - Built with **Headless UI** & **Heroicons**.
+  - Form handling with **React Hook Form + Zod**.
+  - Toast notifications using **React Toastify**.
+  - Date selection with **React Datepicker**.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- ⚡ **State & Data**
+  - Global state management with **Zustand**.
+  - Data fetching with **Axios**.
+  - JWT decoding with `jwt-decode`.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- 🛠️ **Developer Experience**
+  - **Vite** for fast development.
+  - **TypeScript** for type safety.
+  - **Prettier + ESLint + Husky + Lint-staged** for clean code.
+  - **Jest + React Testing Library** for testing.
+
+---
+
+## 🏗️ Tech Stack
+
+**Frontend:**
+- React 19, React Router v7  
+- TailwindCSS + Tailwind Merge  
+- Zustand (state)  
+- Axios (HTTP requests)  
+- Headless UI & Heroicons (UI components)  
+- React Hook Form + Zod (forms & validation)  
+- React Datepicker (date handling)  
+- React Toastify (notifications)  
+
+**Development Tools:**
+- Vite  
+- TypeScript  
+- ESLint + Prettier  
+- Husky + Lint-staged  
+- Jest + React Testing Library  
+
+---
+
+## 📂 Project Structure
+
