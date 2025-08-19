@@ -58,5 +58,3 @@ This project uses **TailwindCSS** for styling, **Zustand** for state management,
 
 ---
 
-## 📂 Project Structure
-
